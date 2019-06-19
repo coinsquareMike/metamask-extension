@@ -29,6 +29,7 @@ const AppStateController = require('./controllers/app-state')
 const InfuraController = require('./controllers/infura')
 const CachedBalancesController = require('./controllers/cached-balances')
 const OnboardingController = require('./controllers/onboarding')
+const ThreeBoxController = require('./controllers/threebox')
 const RecentBlocksController = require('./controllers/recent-blocks')
 const IncomingTransactionsController = require('./controllers/incoming-transactions')
 const MessageManager = require('./lib/message-manager')
@@ -195,6 +196,14 @@ module.exports = class MetamaskController extends EventEmitter {
     })
 
     this.addressBookController = new AddressBookController(undefined, initState.AddressBookController)
+
+    this.threeBoxController = new ThreeBoxController({
+      preferencesController: this.preferencesController,
+      addressBook: this.addressBookController,
+      keyringController: this.keyringController,
+      provider: this.provider,
+      restoreFrom3Box: false,
+    })
 
     // tx mgmt
     this.txController = new TransactionController({
@@ -554,6 +563,7 @@ module.exports = class MetamaskController extends EventEmitter {
         vault = await this.keyringController.createNewVaultAndKeychain(password)
         const accounts = await this.keyringController.getAccounts()
         this.preferencesController.setAddresses(accounts)
+        this.threeBoxController.new3Box(accounts[0])
         this.selectFirstIdentity()
       }
       releaseLock()
@@ -600,6 +610,7 @@ module.exports = class MetamaskController extends EventEmitter {
       // set new identities
       this.preferencesController.setAddresses(accounts)
       this.selectFirstIdentity()
+      this.threeBoxController.new3Box(accounts[0])
       releaseLock()
       return vault
     } catch (err) {
@@ -707,6 +718,13 @@ module.exports = class MetamaskController extends EventEmitter {
     await this.preferencesController.syncAddresses(accounts)
     await this.balancesController.updateAllBalances()
     await this.txController.pendingTxTracker.updatePendingTxs()
+
+    const current3BoxAddress = this.threeBoxController.getThreeBoxAddress()
+    const firstAccountAddress = accounts[0]
+    if (current3BoxAddress !== firstAccountAddress) {
+      this.threeBoxController.new3Box(firstAccountAddress)
+    }
+
     return this.keyringController.fullUpdate()
   }
 
