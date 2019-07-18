@@ -203,6 +203,7 @@ module.exports = class MetamaskController extends EventEmitter {
       keyringController: this.keyringController,
       provider: this.provider,
       restoreFrom3Box: false,
+      initState: initState.ThreeBoxController,
     })
 
     // tx mgmt
@@ -288,6 +289,7 @@ module.exports = class MetamaskController extends EventEmitter {
       OnboardingController: this.onboardingController.store,
       ProviderApprovalController: this.providerApprovalController.store,
       IncomingTransactionsController: this.incomingTransactionsController.store,
+      ThreeBoxController: this.threeBoxController.store,
     })
 
     this.memStore = new ComposableObservableStore(null, {
@@ -313,6 +315,8 @@ module.exports = class MetamaskController extends EventEmitter {
       ProviderApprovalController: this.providerApprovalController.store,
       ProviderApprovalControllerMemStore: this.providerApprovalController.memStore,
       IncomingTransactionsController: this.incomingTransactionsController.store,
+      // ThreeBoxController
+      ThreeBoxController: this.threeBoxController.store,
     })
     this.memStore.subscribe(this.sendUpdate.bind(this))
   }
@@ -425,6 +429,7 @@ module.exports = class MetamaskController extends EventEmitter {
     const networkController = this.networkController
     const providerApprovalController = this.providerApprovalController
     const onboardingController = this.onboardingController
+    const threeBoxController = this.threeBoxController
 
     return {
       // etc
@@ -530,6 +535,9 @@ module.exports = class MetamaskController extends EventEmitter {
 
       // onboarding controller
       setSeedPhraseBackedUp: nodeify(onboardingController.setSeedPhraseBackedUp, onboardingController),
+
+      // 3box syncing
+      setThreeBoxSyncing: nodeify(threeBoxController.setThreeBoxSyncing, threeBoxController),
     }
   }
 
