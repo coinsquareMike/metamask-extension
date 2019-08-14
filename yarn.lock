@@ -8506,6 +8506,11 @@ eth-hd-keyring@^2.0.0:
     events "^1.1.1"
     xtend "^4.0.1"
 
+eth-json-rpc-errors@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/eth-json-rpc-errors/-/eth-json-rpc-errors-0.3.1.tgz#fd8a3b21a14ed0a3dceb257a61c3ced28cd8b0b0"
+  integrity sha512-TUBUzAzl0ccQ94ygajkUUctw6Gql0PbgK5J7tD6v9hGk2yKiML+U6HjG9up2AMe15dlMQW33zDjwAerNjDRsYQ==
+
 eth-json-rpc-filters@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/eth-json-rpc-filters/-/eth-json-rpc-filters-3.0.4.tgz#456cdb7108dcb563fcfd25d4b36fd426d42c0b06"
@@ -12988,18 +12993,6 @@ json-rpc-engine@^3.4.0, json-rpc-engine@^3.6.0, json-rpc-engine@^3.6.3, json-rpc
     promise-to-callback "^1.0.0"
     safe-event-emitter "^1.0.1"
 
-json-rpc-engine@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/json-rpc-engine/-/json-rpc-engine-4.0.0.tgz#ad5ddb2ffa207116df3a5297febd04b623ae3f7c"
-  integrity sha512-SvOcy0SFqdMyWH/8muc8G88CvrlzQW4XC0/HA+ukc1nFlj4im3rcwGjivhznBMa5xiEK4EzO404Qi1cB0svU0g==
-  dependencies:
-    async "^2.0.1"
-    babel-preset-env "^1.7.0"
-    babelify "^7.3.0"
-    json-rpc-error "^2.0.0"
-    promise-to-callback "^1.0.0"
-    safe-event-emitter "^1.0.1"
-
 json-rpc-engine@^5.0.0, json-rpc-engine@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/json-rpc-engine/-/json-rpc-engine-5.1.1.tgz#880f2ff249338925e69de9f399847a6ca2c61268"
@@ -13008,6 +13001,15 @@ json-rpc-engine@^5.0.0, json-rpc-engine@^5.1.1:
     "@babel/preset-env" "^7.3.4"
     async "^2.0.1"
     babelify "^10.0.0"
+    promise-to-callback "^1.0.0"
+    safe-event-emitter "^1.0.1"
+
+"json-rpc-engine@github:metamask/json-rpc-engine", json-rpc-engine@metamask/json-rpc-engine:
+  version "5.1.2"
+  resolved "https://codeload.github.com/metamask/json-rpc-engine/tar.gz/83aa1672a125fe416fd0a2605ed1793bb76413f1"
+  dependencies:
+    async "^2.0.1"
+    eth-json-rpc-errors "^0.3.1"
     promise-to-callback "^1.0.0"
     safe-event-emitter "^1.0.1"
 
@@ -14644,18 +14646,18 @@ mersenne-twister@^1.0.1:
   resolved "https://registry.yarnpkg.com/mersenne-twister/-/mersenne-twister-1.1.0.tgz#f916618ee43d7179efcf641bec4531eb9670978a"
   integrity sha1-+RZhjuQ9cXnvz2Qb7EUx65Zwl4o=
 
-"metamask-inpage-provider@github:rekmarks/metamask-inpage-provider#permissions":
+metamask-inpage-provider@rekmarks/metamask-inpage-provider#permissions:
   version "2.0.1"
-  resolved "https://codeload.github.com/rekmarks/metamask-inpage-provider/tar.gz/b1a76d67302de58307a0c609f4fb3d07f01dd1ac"
+  resolved "https://codeload.github.com/rekmarks/metamask-inpage-provider/tar.gz/ae9d8b1fa78183a29d6ceb8291c7dc2960952b8b"
   dependencies:
-    json-rpc-engine "^5.0.0"
+    eth-json-rpc-errors "^0.3.1"
+    json-rpc-engine "github:metamask/json-rpc-engine"
     json-rpc-middleware-stream "^2.1.1"
     loglevel "^1.6.1"
     obj-multiplex "^1.0.0"
-    obs-store "^4.0.1"
+    obs-store "github:rekmarks/obs-store#babelify"
     pump "^3.0.0"
     safe-event-emitter "^1.0.1"
-    through2 "^2.0.3"
 
 metamask-logo@^2.1.4:
   version "2.1.4"
@@ -15869,13 +15871,10 @@ obs-store@^3.0.2:
     through2 "^2.0.3"
     xtend "^4.0.1"
 
-obs-store@^4.0.1:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/obs-store/-/obs-store-4.0.2.tgz#918377cf76fbe9a5d1451c0cc4895d5c236211e9"
-  integrity sha512-58/7oWFxBkQ9sx+E1R/RSzmCaywxItSZLeMt39U2UTOek2AFqFmtAbL1tU1T4vx2NS+qsoafnRIF++IVkp+QDQ==
+"obs-store@github:rekmarks/obs-store#babelify":
+  version "4.0.3"
+  resolved "https://codeload.github.com/rekmarks/obs-store/tar.gz/09b307064083759a7d15fac4e372582e669c165c"
   dependencies:
-    "@babel/preset-env" "^7.3.4"
-    babelify "^10.0.0"
     readable-stream "^2.2.2"
     safe-event-emitter "^1.0.1"
     through2 "^2.0.3"

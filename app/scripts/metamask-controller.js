@@ -252,8 +252,7 @@ module.exports = class MetamaskController extends EventEmitter {
       openPopup: opts.openPopup,
       closePopup: opts.closePopup,
     },
-    // TOOD: Persist/restore state here:
-    {})
+    initState.PermissionsController)
 
     this.store.updateStructure({
       AppStateController: this.appStateController.store,
@@ -267,6 +266,7 @@ module.exports = class MetamaskController extends EventEmitter {
       InfuraController: this.infuraController.store,
       CachedBalancesController: this.cachedBalancesController.store,
       OnboardingController: this.onboardingController.store,
+      // TODO:permissions permissionsRequests should be memStore only
       PermissionsController: this.permissionsController.permissions,
     })
 
@@ -290,6 +290,7 @@ module.exports = class MetamaskController extends EventEmitter {
       InfuraController: this.infuraController.store,
       OnboardingController: this.onboardingController.store,
       PermissionsController: this.permissionsController.permissions,
+      SiteMetadata: this.permissionsController.memStore,
     })
     this.memStore.subscribe(this.sendUpdate.bind(this))
   }
