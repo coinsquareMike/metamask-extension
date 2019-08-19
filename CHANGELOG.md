@@ -3,6 +3,13 @@
 ## Current Develop Branch
 
 ## 7.1.0 Fri Aug 16 2019
+- [#6944](https://github.com/MetaMask/metamask-extension/pull/6944): Show recipient alias in confirm header if exists (#6944)
+- [#6991](https://github.com/MetaMask/metamask-extension/pull/6991): Remove reload from Share Address button (#6991)
+- [#6978](https://github.com/MetaMask/metamask-extension/pull/6978): Address book fixes (#6978)
+- [#7018](https://github.com/MetaMask/metamask-extension/pull/7018): Rename Contacts List settings tab to Contacts (#7018)
+- [#7021](https://github.com/MetaMask/metamask-extension/pull/7021): Using translated string for end of flow messaging (#7021)
+- [#7013](https://github.com/MetaMask/metamask-extension/pull/7013): Connections settings tab (#7013)
+- [#6996](https://github.com/MetaMask/metamask-extension/pull/6996): Fetch & display received transactions (#6996)
 
 ## 7.0.1 Thu Aug 08 2019
 - [#6975](https://github.com/MetaMask/metamask-extension/pull/6975): Ensure seed phrase backup notification only shows up for new users
